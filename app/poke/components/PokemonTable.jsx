@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { fetchPokemonList } from "../../../lib/pokeApi";
 import Pagination from "./Pagination";
 
+
 export default function PokemonTable({ initialData, initialPage = 1, pageSize = 20 }) {
   const [page, setPage] = useState(initialPage);
   const [data, setData] = useState(initialData);
