@@ -16,15 +16,9 @@ export default function PokemonDetails({ name }) {
     setActiveTypeIndex(0);
 
     fetchPokemonDetails(name)
-      .then((res) => {
-        if (!cancelled) setData(res);
-      })
-      .catch((err) => {
-        if (!cancelled) setError(err.message || "Failed to load details");
-      })
-      .finally(() => {
-        if (!cancelled) setLoading(false);
-      });
+      .then((res) => !cancelled && setData(res))
+      .catch((err) => !cancelled && setError(err.message || "Failed to load details"))
+      .finally(() => !cancelled && setLoading(false));
 
     return () => {
       cancelled = true;
@@ -74,12 +68,10 @@ export default function PokemonDetails({ name }) {
         </div>
         <div className="text-sm text-gray-700 space-y-1 mt-2">
           <div>
-            <span className="font-medium">Game Indices Count:</span>{" "}
-            {gameIndicesCount}
+            <span className="font-medium">Game Indices Count:</span> {gameIndicesCount}
           </div>
           <div>
-            <span className="font-medium">Total Moves Count:</span>{" "}
-            {movesCount}
+            <span className="font-medium">Total Moves Count:</span> {movesCount}
           </div>
         </div>
       </div>
